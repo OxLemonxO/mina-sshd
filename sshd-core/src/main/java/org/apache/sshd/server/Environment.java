@@ -36,6 +36,11 @@ public interface Environment {
     String ENV_USER = "USER";
 
     /**
+     * Key for the ip user environment variable
+     */
+    String ENV_IP = "IP";
+
+    /**
      * Key for the lines environment variable. Specifies the number of
      * lines visible on the client side. {@link #ENV_LINES} and
      * {@link #ENV_COLUMNS} make up the console screen size.

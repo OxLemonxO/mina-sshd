@@ -20,6 +20,8 @@ package org.apache.sshd.server.channel;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -635,6 +637,9 @@ public class ChannelSession extends AbstractServerChannel {
         // Add the user
         Session session = getSession();
         addEnvVariable(Environment.ENV_USER, session.getUsername());
+        InetSocketAddress saddress = (InetSocketAddress) session.getRemoteAddress();
+        InetAddress address = saddress.getAddress();
+        addEnvVariable(Environment.ENV_IP, address.getHostAddress());
         // If the shell wants to be aware of the session, let's do that
         if (command instanceof SessionAware) {
             ((SessionAware) command).setSession((ServerSession) session);
